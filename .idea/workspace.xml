@@ -214,12 +214,13 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-4" />
     <option name="y" value="82" />
     <option name="width" value="1386" />
     <option name="height" value="597" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <hideEmptyPackages ProjectPane="true" />
@@ -535,7 +536,7 @@
       <updated>1531834121376</updated>
       <workItem from="1531834131869" duration="7286000" />
       <workItem from="1531875489201" duration="41570000" />
-      <workItem from="1531962043033" duration="1538000" />
+      <workItem from="1531962043033" duration="2110000" />
     </task>
     <servers />
   </component>
@@ -572,7 +573,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50394000" />
+    <option name="totallyTimeSpent" value="50966000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -584,7 +585,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
