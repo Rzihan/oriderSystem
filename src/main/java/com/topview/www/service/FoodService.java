@@ -1,5 +1,6 @@
 package com.topview.www.service;
 
+import com.topview.www.bo.Page;
 import com.topview.www.constant.FoodConstants;
 import com.topview.www.dao.FoodDao;
 import com.topview.www.po.Food;
@@ -135,11 +136,70 @@ public class FoodService {
 		try {
 			session = MyBatisUtil.getSqlSession();
 			FoodDao foodDao = session.getMapper(FoodDao.class);
+			int result = foodDao.updateFoodNum(food.getFoodNum(), food.getId());
+			return result != 0;
+		} finally {
+			MyBatisUtil.closeSession(session);
+		}
+	}
+
+	/**
+	 * 用户根据搜索条件获取List<Food>并将其放入page.list中
+	 * @param search 搜索条件
+	 * @param foodPage 分页对象
+	 */
+	public void getPutAwayFoodsBySearch(String search, Page<Food> foodPage) {
+		SqlSession session = null;
+		try {
+			session = MyBatisUtil.getSqlSession();
+			FoodDao foodDao = session.getMapper(FoodDao.class);
+			int total = foodDao.getPutAwayFoodsAllTotalBySearch(FoodConstants.FOOD_PUTAWAY, "%" + search + "%");
+			foodPage.setTotalRecord(total);
+			int startRow = (foodPage.getCurrentPage() - 1 ) * foodPage.getPageSize();
+			List<Food> foodList = foodDao.getPutAwayFoodsBySearch(FoodConstants.FOOD_PUTAWAY, "%" + search + "%",
+					startRow, foodPage.getPageSize());
+			foodPage.setList(foodList);
+		} finally {
+			MyBatisUtil.closeSession(session);
+		}
+	}
+
+	/**
+	 * 用户根据搜索条件获取List<Food>并将其放入page.list中
+	 * @param storeId 搜索条件
+	 * @param foodPage 分页对象
+	 */
+	public void getPutAwayFoodsByStoreId(int storeId, Page<Food> foodPage) {
+		SqlSession session = null;
+		try {
+			session = MyBatisUtil.getSqlSession();
+			FoodDao foodDao = session.getMapper(FoodDao.class);
+			int total = foodDao.getPutAwayFoodsAllTotalByStoreId(FoodConstants.FOOD_PUTAWAY, storeId);
+			foodPage.setTotalRecord(total);
+			int startRow = (foodPage.getCurrentPage() - 1) * foodPage.getPageSize();
+			List<Food> resultList = foodDao.getPutAwayFoodsByStoreId(FoodConstants.FOOD_PUTAWAY, storeId,
+					startRow, foodPage.getPageSize());
+			foodPage.setList(resultList);
+		} finally {
+			MyBatisUtil.closeSession(session);
+		}
+	}
+
+
+	public Food getFoodByFoodId(int foodId) {
+		SqlSession session = null;
+		try {
+			session = MyBatisUtil.getSqlSession();
+
+
+
 
 		} finally {
 			MyBatisUtil.closeSession(session);
 		}
-		return true;
+
+
+		return null;
 	}
 
 

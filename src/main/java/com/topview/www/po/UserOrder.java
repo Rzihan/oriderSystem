@@ -10,13 +10,13 @@ public class UserOrder {
 	private int userId;// 用户id
 	private String payPrice;// 支付价格
 	private int status;// 记录状态
-	private int address;// 收货地址
+	private String address;// 收货地址
 	private int storeId;//店铺id
 
 	public UserOrder() {}
 
 	public UserOrder(int id, int userId, String payPrice,
-					 int status, int address, int storeId) {
+					 int status, String address, int storeId) {
 		this.id = id;
 		this.userId = userId;
 		this.payPrice = payPrice;
@@ -57,11 +57,11 @@ public class UserOrder {
 		this.status = status;
 	}
 
-	public int getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(int address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 

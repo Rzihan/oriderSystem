@@ -26,7 +26,7 @@ public class CloseStoreServlet extends HttpServlet{
 		store.setId(Integer.parseInt(idStr));
 		store.setUserId(Integer.parseInt(userIdStr));
 		StoreService storeService = StoreService.getInstance();
-		storeService.colseStore(store);
+		storeService.closeStore(store);
 		req.getRequestDispatcher(AdminPathConstants.FIND_ALL_APPLY_FOR_STORE_SERVLET_PATH).forward(req, resp);
 	}
 }

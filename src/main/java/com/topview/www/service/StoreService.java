@@ -1,5 +1,6 @@
 package com.topview.www.service;
 
+import com.topview.www.bo.Page;
 import com.topview.www.constant.RoleConstants;
 import com.topview.www.constant.StoreConstants;
 import com.topview.www.dao.StoreDao;
@@ -40,8 +41,7 @@ public class StoreService {
 		try {
 			session = MyBatisUtil.getSqlSession();
 			StoreDao storeDao = session.getMapper(StoreDao.class);
-			Store store = storeDao.getStoreByUserId(userId);
-			return store;
+			return storeDao.getStoreByUserId(userId);
 		} finally {
 			MyBatisUtil.closeSession(session);
 		}
@@ -97,8 +97,7 @@ public class StoreService {
 		try {
 			session = MyBatisUtil.getSqlSession();
 			StoreDao storeDao = session.getMapper(StoreDao.class);
-			List<Store> resultList = storeDao.findAllApplyForStore();
-			return resultList;
+			return storeDao.findAllApplyForStore();
 		} finally {
 			MyBatisUtil.closeSession(session);
 		}
@@ -126,7 +125,7 @@ public class StoreService {
 	 * 系统管理员关闭开店
 	 * @return 修改数据成功,返回true,否则返回false
 	 */
-	public boolean colseStore(Store store) {
+	public boolean closeStore(Store store) {
 		SqlSession session = null;
 		try {
 			session = MyBatisUtil.getSqlSession();
@@ -145,6 +144,39 @@ public class StoreService {
 		}
 	}
 
+	/**
+	 * 用户根据id审核失败的开店申请记录
+	 * @param store 店铺对象,包含数据(id)
+	 * @return 删除成功返回true,否则返回false
+	 */
+	public boolean deleteApplyFor(Store store) {
+		SqlSession session = null;
+		try {
+			session = MyBatisUtil.getSqlSession();
+			StoreDao storeDao = session.getMapper(StoreDao.class);
+			int result = storeDao.removeData(store);
+			return result != 0;
+		} finally {
+			MyBatisUtil.closeSession(session);
+		}
+	}
+
+	public void userSearchStores(String search, Page<Store> page) {
+		SqlSession session = null;
+		try {
+			session = MyBatisUtil.getSqlSession();
+			StoreDao storeDao = session.getMapper(StoreDao.class);
+			// 获取总记录条数
+			int total = storeDao.getUserSearchStoresAllTotal(StoreConstants.CHECK_SUCCESS, "%" + search + "%");
+			page.setTotalRecord(total);
+			int startRow = (page.getCurrentPage() - 1 ) * page.getPageSize();
+			List<Store> resultList = storeDao.getUserSearchStores(StoreConstants.CHECK_SUCCESS, "%" + search + "%",
+					startRow, page.getPageSize());
+			page.setList(resultList);
+		} finally {
+			MyBatisUtil.closeSession(session);
+		}
+	}
 
 
 }

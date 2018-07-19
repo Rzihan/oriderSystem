@@ -16,4 +16,9 @@ public interface StoreDao extends BaseDao<Store>{
     int deleteUserAndRoleData(@Param("userId") int userId, @Param("roleId")int roleId);
 
     List<Store> findAllApplyForStore();
+
+    int getUserSearchStoresAllTotal(@Param("applyForState")int applyForState, @Param("search")String search);
+
+    List<Store> getUserSearchStores(@Param("applyForState")int applyForState, @Param("search")String search,
+                                    @Param("startRow")int startRow, @Param("pageSize")int pageSize);
 }

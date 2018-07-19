@@ -16,4 +16,6 @@ public class StorePathConstants {
     public static final String FOOD_WARE_HOUSE_JSP_PATH = "/food/storeFoodWarehouse.jsp";
     // 根据店铺Id查找食物的servlet的路径
     public static final String FIND_FOOD_BY_STORE_ID_SERVLET_PATH = "/food/FindFoodByStoreIdServlet";
+    // 用户查找店铺的JSP页面的路径
+    public static final String USER_SEARCH_STORE_JSP_PATH = "/store/userSearchStore.jsp";
 }

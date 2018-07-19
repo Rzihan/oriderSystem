@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-<%@ page import="com.topview.www.po.*" %>
-<% 
+<%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" 
 		+ request.getServerPort() + path + "/"; 
@@ -16,7 +14,7 @@
 	
 </head>
 <body>
-	<jsp:include page="../user/userIndex.jsp"></jsp:include>
+	<jsp:include page="../user/userIndex.jsp"/>
 	<!-- ====================== 展示用户查询食物的结果 ======================= -->	
 		<c:if test="${page.list.isEmpty()}">
 		<h3 align="center">sorry，查不到相关数据</h3>
@@ -67,7 +65,7 @@
 			<li>
 			<a href="user/UserSearchServlet?currentPage=1&search=${search}&searchType=${searchType}">首页</a>
 			<a href="user/UserSearchServlet?currentPage=${page.currentPage==1? page.currentPage : page.currentPage-1}&search=${search}&searchType=${searchType}">上一页</a>
-			<c:out value="第${page.currentPage}页/共${page.totalPages}页"></c:out>
+			<c:out value="第${page.currentPage}页/共${page.totalPages}页"/>
 			<a href="user/UserSearchServlet?currentPage=${page.currentPage==page.totalPages? page.currentPage : page.currentPage+1 }&search=${search}&searchType=${searchType}">下一页</a>
 			<a href="user/UserSearchServlet?currentPage=${page.totalPages}&search=${search}&searchType=${searchType}">尾页</a></li>
 			</ul>

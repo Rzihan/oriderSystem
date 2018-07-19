@@ -41,7 +41,7 @@
         FROM food AS f,store AS s
         WHERE f.food_state = 2 AND f.store_id = s.id
     </select>
-    <resultMap id="CheckFoodMap" type="com.topview.www.vo.CheckFood">
+    <resultMap id="CheckFoodMap" type="com.topview.www.bo.CheckFood">
         <id property="id" column="id"/>
         <result property="storeName" column="store_name"/>
         <result property="storeId" column="store_id"/>
@@ -51,4 +51,28 @@
         <result property="foodType" column="food_type"/>
         <result property="foodImage" column="food_image"/>
     </resultMap>
+
+    <update id="updateFoodNum">
+        UPDATE food SET food_num = #{foodNum} WHERE id = #{id}
+    </update>
+
+    <select id="getPutAwayFoodsAllTotalBySearch" resultType="int">
+        SELECT count(*) FROM food WHERE food_state = #{foodState}
+        AND (food_name LIKE #{search} OR food_type LIKE #{search})
+    </select>
+
+    <select id="getPutAwayFoodsBySearch" resultMap="FoodMap">
+        SELECT id,store_id,food_name,food_price,food_sales,food_comments,food_type,food_image,
+        food_num FROM food WHERE food_state = #{foodState} AND (food_name LIKE #{search} OR food_type LIKE #{search})
+        LIMIT #{startRow},#{pageSize}
+    </select>
+
+    <select id="getPutAwayFoodsAllTotalByStoreId" resultType="int">
+        SELECT count(*) FROM food WHERE food_state = #{foodState} AND store_id = #{storeId}
+    </select>
+
+    <select id="getPutAwayFoodsByStoreId" resultMap="FoodMap">
+        SELECT id,food_name,food_price,food_sales,food_comments,food_type,food_image,food_num
+        FROM food WHERE food_state = #{foodState} AND store_id = #{storeId} LIMIT #{startRow},#{pageSize}
+    </select>
 </mapper>

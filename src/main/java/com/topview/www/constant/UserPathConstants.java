@@ -25,5 +25,10 @@ public class UserPathConstants {
     public static final String FIND_ALL_MY_ADDRESS_SERVLET_PATH = "/myAddress/FindAllMyAddressServlet";
     //用户更新我的地址页面的路径
     public static final String UPDATE_MY_ADDRESS_JSP_PATH = "/myAddress/updateMyAddress.jsp";
+    //用户查找食物的地址页面的路径
+    public static final String USER_SEARCH_FOODS_JSP_PATH = "/food/userSearchFoods.jsp";
+    //"/store/userEnterStore.jsp"
+    public static final String USER_ENTER_STORE_JSP_PATH = "/store/userEnterStore.jsp";
+
 
 }

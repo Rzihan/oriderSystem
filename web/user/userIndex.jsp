@@ -37,7 +37,7 @@
 		</style>
 </head>
 <body>
-	<jsp:include page="../menu.jsp"></jsp:include>
-	<jsp:include page="search.jsp"></jsp:include>
+	<jsp:include page="../menu.jsp"/>
+	<jsp:include page="search.jsp"/>
 </body>
 </html>

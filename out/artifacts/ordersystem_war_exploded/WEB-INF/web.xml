@@ -126,6 +126,26 @@
         <servlet-class>com.topview.www.controller.food.FindAllCheckingFoodServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>UpdateFoodNumServlet</servlet-name>
+        <servlet-class>com.topview.www.controller.food.UpdateFoodNumServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DeleteApplyForServlet</servlet-name>
+        <servlet-class>com.topview.www.controller.store.DeleteApplyForServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UserSearchServlet</servlet-name>
+        <servlet-class>com.topview.www.controller.user.UserSearchServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>EnterStoreServlet</servlet-name>
+        <servlet-class>com.topview.www.controller.store.EnterStoreServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>SignInServlet</servlet-name>
         <url-pattern>/user/SignInServlet</url-pattern>
@@ -229,5 +249,25 @@
     <servlet-mapping>
         <servlet-name>FindAllCheckingFoodServlet</servlet-name>
         <url-pattern>/food/FindAllCheckingFoodServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UpdateFoodNumServlet</servlet-name>
+        <url-pattern>/food/UpdateFoodNumServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DeleteApplyForServlet</servlet-name>
+        <url-pattern>/store/DeleteApplyForServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UserSearchServlet</servlet-name>
+        <url-pattern>/user/UserSearchServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>EnterStoreServlet</servlet-name>
+        <url-pattern>/store/EnterStoreServlet</url-pattern>
     </servlet-mapping>
 </web-app>

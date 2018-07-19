@@ -32,6 +32,22 @@
         id,user_id,store_name,store_type,store_comments,store_address,apply_for_state
         FROM store WHERE apply_for_state in(1,2);
     </select>
+
+    <delete id="removeData" parameterType="Store">
+        DELETE FROM store WHERE id = #{id}
+    </delete>
+
+    <select id="getUserSearchStoresAllTotal" resultType="int">
+        SELECT count(*) FROM store WHERE apply_for_state = #{applyForState}
+        AND (store_name LIKE #{search} OR store_type LIKE #{search})
+    </select>
+
+    <select id="getUserSearchStores" resultMap="StoreMap">
+        SELECT id,store_name,store_type,store_sales,store_grade,store_comments,store_address,store_logo
+        FROM store WHERE apply_for_state = #{applyForState}
+        AND (store_name LIKE #{search} OR store_type LIKE #{search})
+        LIMIT #{startRow},#{pageSize}
+    </select>
     
     <resultMap id="StoreMap" type="Store">
         <id property="id" column="id"/>

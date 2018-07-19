@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-<%@ page import="com.topview.www.po.*" %>
-<% 
+<%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" 
 		+ request.getServerPort() + path + "/"; 
@@ -13,15 +11,15 @@
 	<base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>用户进入店铺页面</title>
-	
 </head>
 <body>
-	<jsp:include page="../user/userIndex.jsp"></jsp:include>
-			<c:if test="${storeName != null}">
-			<h3 align="center">${storeName}</h3>
-			<c:if test="${foodsList.isEmpty()}">
-				<h4 align="center">店铺暂无上架商品</h4>
-			</c:if>
+	<jsp:include page="../user/userIndex.jsp"/>
+	<c:if test="${storeName != null}">
+		<h3 align="center">${storeName}</h3>
+		<c:if test="${page.list.isEmpty()}">
+			<h4 align="center">店铺暂无上架商品</h4>
+		</c:if>
+		<c:if test="${!page.list.isEmpty()}">
 			<table border="8" align="center" width="720px">
 				<tr>
 					<th width="80px">图片</th>
@@ -33,7 +31,7 @@
 					<th>地点</th>
 					<th>操作</th>
 				</tr>
-				<c:forEach var="food" items="${foodsList}">
+				<c:forEach var="food" items="${page.list}">
 				<tr>
 					<td><img alt="" src="Image/food/${food.foodImage}" width="80px" height="80px"></td>
 					<td>${food.foodName}</td>
@@ -62,6 +60,15 @@
 				</tr>
 				</c:forEach>
 			</table>
-			</c:if>
+				<ul style="text-align: center">
+					<li>
+						<a href="store/EnterStoreServlet?currentPage=1&storeName=${storeName}&storeId=${storeId}">首页</a>
+						<a href="store/EnterStoreServlet?currentPage=${page.currentPage==1? page.currentPage : page.currentPage-1}&storeName=${storeName}&storeId=${storeId}">上一页</a>
+						<c:out value="第${page.currentPage}页/共${page.totalPages}页"/>
+						<a href="store/EnterStoreServlet?currentPage=${page.currentPage==page.totalPages? page.currentPage : page.currentPage+1 }&storeName=${storeName}&storeId=${storeId}">下一页</a>
+						<a href="store/EnterStoreServlet?currentPage=${page.totalPages}&storeName=${storeName}&storeId=${storeId}">尾页</a></li>
+				</ul>
+		</c:if>
+	</c:if>
 </body>
 </html>
