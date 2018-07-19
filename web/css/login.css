@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.main{
+    text-align: center;/*文本居中*/
+    background-color: #607d8bab;/*背景颜色*/
+    border-radius: 20px;/*为元素添加园角边框*/
+    width: 280px;/*宽度250px*/
+    height: 280px;/*高度250px*/
+    position: absolute;/*位置，生成绝对定位的元素*/
+    left: 50%;/*距离左边的位置*/
+    top: 40%;/*距离上边的位置*/
+    transform: translate(-50%,-50%)/*定义2D转换*/
+}
+.image{
+	overflow: hidden;/*定义溢出元素框的内容如何处理，hidden：修剪，并且不可见*/
+	position: fixed;/*生成绝对定位的元素，相对于浏览器窗口进行定位*/
+	width:100%;/*宽度100%*/
+	height:100%;/*高度100%*/
+	/*背景图片，url地址，no-repeat不平铺*/
+	background: url("../Image/login/myLoginBackgroundPicture.jpg") no-repeat;
+	/*属性规定背景图像的尺寸,把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。*/
+	background-size:cover;
+}

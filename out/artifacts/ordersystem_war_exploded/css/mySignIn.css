@@ -1,0 +1,12 @@
+@charset "UTF-8";
+.form{
+    text-align: center;/*文本居中*/
+    background-color: #607d8bab;/*背景颜色*/
+    border-radius: 20px;/*为元素添加园角边框*/
+    width: 300px;/*宽度250px*/
+    height: 250px;/*高度250px*/
+    position: absolute;/*位置，生产绝对定位的元素*/
+    left: 50%;/*距离左边的位置*/
+    top: 40%;/*距离上边的位置*/
+    transform: translate(-50%,-50%)/*定义2D转换*/
+}

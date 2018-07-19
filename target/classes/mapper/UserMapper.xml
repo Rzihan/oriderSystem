@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.topview.www.dao.UserDao">
+
+    <resultMap id="UserMap" type="User">
+        <id property="userId" column="user_id"/>
+        <result property="userLoginId" column="user_login_id"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userNickname" column="user_nickname"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userHeadportrait" column="user_headportrait"/>
+        <result property="userRegisterTime" column="user_register_time"/>
+        <result property="userLoginTime" column="user_login_time"/>
+        <result property="userLoginIp" column="user_login_ip"/>
+    </resultMap>
+
+    <select id="hasId" parameterType="User" resultType="int">
+        SELECT count(*) id FROM user WHERE user_login_id = #{userLoginId}
+    </select>
+
+    <insert id="addData" parameterType="User">
+        INSERT INTO user(user_login_id,user_password,user_nickname,user_email)
+        VALUES (#{userLoginId}, #{userPassword}, #{userNickname}, #{userEmail})
+    </insert>
+
+    <select id="loginIn" parameterType="User" resultType="Integer">
+        SELECT user_id FROM user WHERE user_login_id = #{userLoginId} AND user_password = #{userPassword}
+    </select>
+
+    <select id="hasRole" resultType="int">
+        SELECT count(*) FROM user_and_role WHERE user_id = #{userId} AND role_id = #{roleId}
+    </select>
+
+    <select id="findMyManageByUserId" parameterType="int" resultMap="UserMap">
+        SELECT user_nickname,user_email,user_headportrait FROM user WHERE user_id = #{userId}
+    </select>
+
+    <update id="updateMyManage" parameterType="User">
+        UPDATE user SET user_nickname = #{userNickname},user_email = #{userEmail} WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateHeadImage" parameterType="User">
+        UPDATE user SET user_headportrait = #{userHeadportrait} WHERE user_id = #{userId}
+    </update>
+</mapper>

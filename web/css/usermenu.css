@@ -1,0 +1,31 @@
+@charset "UTF-8";
+.main{
+	background: green;
+	padding:10px 0 6px 0;
+	width:100%;
+	left:0;
+	bottom:0;
+}
+
+.main ul{
+	hegiht:0px;
+}
+
+.main ul li{
+	float:left;
+	width:25%;
+	text-align: center;
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+}
+
+.main ul li span{
+	display:block;
+	font-size:20px;
+	line-height:25px;
+}
+
+a{
+	text-decoration:none;
+}

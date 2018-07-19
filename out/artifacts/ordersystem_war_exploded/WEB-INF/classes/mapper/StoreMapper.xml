@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.topview.www.dao.StoreDao">
+
+    <select id="getStoreByUserId" parameterType="int" resultMap="StoreMap">
+        SELECT id,store_name,store_type,store_comments,store_address,apply_for_state
+        FROM store WHERE user_id = #{userId}
+    </select>
+
+    <insert id="addData" parameterType="Store">
+        INSERT INTO store
+        (user_id,store_name,store_type,store_comments,store_address,store_logo)
+        VALUES
+        (#{userId},#{storeName},#{storeType},#{storeComments},#{storeAddress},#{storeLogo})
+    </insert>
+
+    <update id="updateApplyForState" parameterType="Store">
+        UPDATE store SET apply_for_state = #{applyForState} WHERE id = #{id}
+    </update>
+
+    <insert id="addUserAndRoleData" >
+        INSERT INTO user_and_role VALUES(#{userId},#{roleId})
+    </insert>
+
+    <delete id="deleteUserAndRoleData">
+        DELETE FROM user_and_role WHERE user_id = #{userId} AND role_id = #{roleId}
+    </delete>
+
+    <select id="findAllApplyForStore" resultMap="StoreMap">
+        SELECT
+        id,user_id,store_name,store_type,store_comments,store_address,apply_for_state
+        FROM store WHERE apply_for_state in(1,2);
+    </select>
+    
+    <resultMap id="StoreMap" type="Store">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="storeName" column="store_name"/>
+        <result property="storeType" column="store_type"/>
+        <result property="storeSales" column="store_sales"/>
+        <result property="storeGrade" column="store_grade"/>
+        <result property="storeComments" column="store_comments"/>
+        <result property="storeAddress" column="store_address"/>
+        <result property="storeLogo" column="store_logo"/>
+        <result property="createTime" column="create_time"/>
+        <result property="applyForState" column="apply_for_state"/>
+    </resultMap>
+
+
+</mapper>

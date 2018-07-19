@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.topview.www.dao.MyAddressDao">
+
+    <insert id="addData" parameterType="MyAddress">
+        INSERT INTO my_address (user_id,linkman,phone,address)
+        VALUES(#{userId},#{linkman},#{phone},#{address})
+    </insert>
+
+    <select id="selectList" parameterType="MyAddress" resultMap="MyAddressMap">
+        SELECT * FROM my_address WHERE user_id = #{userId}
+    </select>
+
+    <update id="updateData" parameterType="myAddress">
+        UPDATE  my_address SET linkman = #{linkman},
+            phone = #{phone},address = #{address} WHERE id = #{id}
+    </update>
+
+    <select id="findMyAddressById" parameterType="int" resultMap="MyAddressMap">
+        SELECT * FROM my_address WHERE id = #{id}
+    </select>
+
+    <delete id="deleteMyAddress" parameterType="int">
+        DELETE FROM my_address WHERE id = #{id}
+    </delete>
+
+    <resultMap id="MyAddressMap" type="MyAddress">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="linkman" column="linkman"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+    </resultMap>
+</mapper>
